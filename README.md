@@ -150,6 +150,33 @@ else:
 
 PyVault is not limited to Discord Webhooks. You can use the `VAULT_TOKEN_PLACEHOLDER` in any HTTP request, header, or API path. Wherever your application requires a hardcoded secret, simply use the placeholder, and the native interceptor will securely handle the injection and memory sanitization for you.
 
+## Important Note: Placeholder Limitations
+While PyVault is highly flexible, there is one technical limitation you must keep in mind regarding where you can safely place the `VAULT_TOKEN_PLACEHOLDER`.
+
+Safe to use in:
+
+- URLs (e.g., https://api.Example.com/VAULT_TOKEN_PLACEHOLDER)
+- HTTP Headers (e.g., "Example": "Bearer VAULT_TOKEN_PLACEHOLDER")
+
+Changing URLs or Headers at the socket level is perfectly safe and will not disrupt the HTTP protocol.
+
+Do NOT use inside the HTTP Body (e.g., JSON payloads):
+
+- If you attempt to inject the placeholder directly into the data payload, it will likely cause the target server to reject your request.
+
+```python
+# Do NOT put the placeholder inside the body!!
+data = {
+    "auth_secret": "VAULT_TOKEN_PLACEHOLDER" 
+}
+response = requests.post(url, json=data)
+```
+
+### Why does this happen?
+High-level HTTP libraries (like Python's `requests`) automatically calculate the `Content-Length` header based on the exact size of your JSON payload before the data is sent.
+
+Because `vault_native.pyd` intercepts and modifies the traffic at the lowest network (socket) level, it swaps the placeholder with your real token after Python has already calculated this length. If your real token has a different length than the placeholder string (23 characters), the `Content-Length` header will be incorrect. The receiving API will detect this mismatch and immediately drop the connection or return a `400 Bad Request` error.
+
 ## Security & Trust Philosophy
 
 PyVault is closed-source to protect the integrity of its obfuscation and protection mechanisms. However, we value transparency and user safety.
