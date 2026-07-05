@@ -96,3 +96,21 @@ else:
 
 PyVault is not limited to Discord Webhooks. You can use the `VAULT_TOKEN_PLACEHOLDER` in any HTTP request, header, or API path. Wherever your application requires a hardcoded secret, simply use the placeholder, and the native interceptor will securely handle the injection and memory sanitization for you.
 
+## Security & Trust Philosophy
+
+PyVault is closed-source to protect the integrity of its obfuscation and protection mechanisms. However, we value transparency and user safety.
+
+- Local-Only Execution: PyVault processes everything locally. No data is ever sent to our servers.
+- Privacy by Design: We do not have access to your tokens, and we do not collect any telemetry or user data.
+- Dependency Transparency: PyVault relies on vetted, industry-standard Rust libraries (e.g., `ring` for encryption, `zeroize` for memory safety) to ensure cryptographic robustness.
+
+#### Virustotal:
+builder.exe (8097d77204975898de2671629d98eb8a71b4395ffe90b755195b3dc3ee85fee7):
+https://www.virustotal.com/gui/file/8097d77204975898de2671629d98eb8a71b4395ffe90b755195b3dc3ee85fee7/detection
+native_vault.pyd (79b3253eb1d2f41624240cdc58c654125ee70f659a9a9f20498fa9221d19d9ca):
+https://www.virustotal.com/gui/file/79b3253eb1d2f41624240cdc58c654125ee70f659a9a9f20498fa9221d19d9ca?nocache=1
+
+# Support & Contact
+Questions, feedback, or found a bug? Feel free to reach out:
+- GitHub: @AkemiCodee (Preferred for Issues & Bugs)
+- Discord: @akeemi666_ (For quick questions)
