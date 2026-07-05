@@ -52,7 +52,9 @@ Before you begin, ensure you have the following files:
 - Immutable Binary: Once `vault.dat` is generated, it is strictly bound to the SHA-256 hash of your .exe. If you modify your Python application code or recompile it, the vault.dat will become invalid and must be regenerated.
 - The Token: The token is the sensitive, private part of your API request (e.g., your Discord Webhook ID/Secret, API Key, or Bearer Token).
 
-### Example: Discord Webhook Integration
+## Python Integration
+
+### Example: Discord-Webhook
 
 Full URL: 
 
@@ -62,7 +64,7 @@ YOUR_SECRET_TOKEN:
 
 `1523306830682046659/tvq0JnDvZM0xv6uZVXJAP2ta3f5fdguHbG5FaoE-IWT9S80yLtbicCBUlHnbJ6Qy_wRf`
 
-### Implementation Example
+#### Implementation Example
 In your Python code, replace your sensitive token with the `VAULT_TOKEN_PLACEHOLDER` string. The native module will automatically intercept the request and inject the decrypted secret at the socket level.
 
 ```python
@@ -88,6 +90,58 @@ response = requests.post(webhook_url, json=data)
 
 if response.status_code in [200, 204]:
     print("Message sent successfully.")
+else:
+    print(f"Request failed with status {response.status_code}: {response.text}")
+```
+
+### Example: Cloudflare Worker (Custom Auth Header)
+PyVault is highly versatile and works perfectly with custom HTTP headers. In this scenario, we protect a static authorization password required by a Cloudflare Worker.
+
+Full Header:
+```python
+headers = {
+    "X-Custom-Auth": "SECRET_PASSWORD",
+    "Content-Type": "application/json"
+}
+```
+Token:
+`"SECRET_PASSWORD"`
+
+#### Implementation Example
+Instead of exposing the secret password in the request headers, we inject the `VAULT_TOKEN_PLACEHOLDER`. The Rust interceptor dynamically identifies the placeholder within the outgoing header payload and replaces it with the decrypted string before the request reaches the network.
+
+```python
+import sys
+import requests
+import vault_native
+
+# Initialize the interceptor
+try:
+    vault_native.init_interceptor()
+    print("Vault-Interceptor loaded successfully.")
+except Exception as e:
+    print(f"Failed to load Vault-Interceptor: {e}")
+    sys.exit(1)
+
+# Usage - Cloudflare Worker configuration
+url = "https://MyApp.YourName.workers.dev/"
+
+# Use the placeholder inside the HTTP header
+headers = {
+    "X-Custom-Auth": "VAULT_TOKEN_PLACEHOLDER",
+    "Content-Type": "application/json"
+}
+
+log_data = {
+    "Status": "Online",
+    "payload": "Secure log transmission via PyVault."
+}
+
+# The request is sent with the placeholder, PyVault handles the rest seamlessly
+response = requests.post(url, json=log_data, headers=headers)
+
+if response.status_code == 200:
+    print("Log successfully sent to Cloudflare!")
 else:
     print(f"Request failed with status {response.status_code}: {response.text}")
 ```
