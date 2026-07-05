@@ -153,7 +153,7 @@ else:
 
 ### Versatility
 
-PyVault is not limited to Discord Webhooks. You can use the `VAULT_TOKEN_PLACEHOLDER` in any HTTP request, header, or API path. Wherever your application requires a hardcoded secret, simply use the placeholder, and the native interceptor will securely handle the injection and memory sanitization for you.
+PyVault is not limited to Discord Webhooks / Cloudflare Worker. You can use the `VAULT_TOKEN_PLACEHOLDER` in any HTTP request, header, or API path. Wherever your application requires a hardcoded secret, simply use the placeholder, and the native interceptor will securely handle the injection and memory sanitization for you.
 
 ## Important Note: Placeholder Limitations
 While PyVault is highly flexible, there is one technical limitation you must keep in mind regarding where you can safely place the `VAULT_TOKEN_PLACEHOLDER`.
