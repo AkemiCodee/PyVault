@@ -1,7 +1,7 @@
 ## PyVault
 This tool mitigates the two most critical vulnerabilities of deploying compiled Python applications (e.g., via PyInstaller or Nuitka): 
-- Source code extraction
-- Memory dumping (RAM analysis)
+- **Source code extraction** 
+- **Memory dumping (RAM analysis)**
 
 By decoupling the secrets from the application logic and delegating the network layer to a hardened Rust binary, the token is never exposed to the Python runtime.
 
@@ -17,12 +17,12 @@ At runtime, your Python application never touches or processes the real API toke
 
 <img width="1014" height="248" alt="Screenshot_3" src="https://github.com/user-attachments/assets/3a60717a-6d16-4607-ac74-8eb03fcc8fb9" />
 
-- Environment Verification - 'vault_native.pyd' performs silent heuristics to detect active debuggers or unauthorized tampering attempts.
-- Integrity Validation - The module verifies the cryptographic footprint of the host executable to authorize vault access.
-- Vault Access - The encrypted payload is securely extracted from 'vault.dat'.
-- In-Memory Decryption - The secret token is decrypted strictly within isolated, volatile memory.
-- Dynamic Payload Injection - The placeholder within the outbound network stream is seamlessly swapped with the real token before transmission.
-- Memory Sanitization - The unencrypted token is instantly zeroized (overwritten with null bytes) to thwart RAM dumping and memory analysis.
+- **Environment Verification** - `vault_native.pyd` performs silent heuristics to detect active debuggers or unauthorized tampering attempts.
+- **Integrity Validation** - The module verifies the cryptographic footprint of the host executable to authorize vault access.
+- **Vault Access** - The encrypted payload is securely extracted from `vault.dat`.
+- **In-Memory Decryption** - The secret token is decrypted strictly within isolated, volatile memory.
+- **Dynamic Payload Injection** - The placeholder within the outbound network stream is seamlessly swapped with the real token before transmission.
+- **Memory Sanitization** - The unencrypted token is instantly zeroized (overwritten with null bytes) to thwart RAM dumping and memory analysis.
 
 <img width="580" height="669" alt="Screenshot_4" src="https://github.com/user-attachments/assets/c5cefb5c-f865-468d-aea6-25d214aa7447" />
 
@@ -31,25 +31,30 @@ After the native module successfully validates the environment and dynamically i
 
 
 ## Getting Started: Implementing PyVault
-To secure your application's API tokens, follow this implementation guide.
+**To secure your application's API tokens, follow this implementation guide.**
 
 ### Prerequisites
 Before you begin, ensure you have the following files:
 - `builder.exe`: The configuration utility.
 - `vault_native.pyd`: The native Rust-based interceptor module.
-- `Your Compiled App`: Your Python script must be compiled into an .exe (using Nuitka or PyInstaller). PyVault does not support standard .py script files.
+- `Your Compiled App`: Your Python script must be compiled into an .exe (using Nuitka or PyInstaller). **PyVault does not support standard .py script files.**
 
 ### Workflow
 1. Navigate to the directory containing your compiled application in your Command Prompt (CMD) or PowerShell.
 2. Execute the builder.exe utility to generate the cryptographically bound vault.dat file.
 
+CMD
 ```bash
   builder.exe --exe "C:\Path\To\Your\Application.exe" --token "YOUR_SECRET_TOKEN"
 ```
+PowerShell
+```powershell
+.\builder.exe --exe "C:\Path\To\Your\Application.exe" --token "YOUR_SECRET_TOKEN"
+```
 
 ### Important Guidelines
-- Full Paths: The `<PATH>` argument must be the absolute path to your file (e.g., C:\Users\Name\Desktop\MyApp.exe).
-- Immutable Binary: Once `vault.dat` is generated, it is strictly bound to the SHA-256 hash of your .exe. If you modify your Python application code or recompile it, the vault.dat will become invalid and must be regenerated.
+- Full Paths: The `<PATH>` argument must be the **absolute path** to your file (e.g., C:\Users\Name\Desktop\MyApp.exe).
+- Immutable Binary: Once `vault.dat` is generated, it is strictly bound to the SHA-256 hash of your .exe. **If you modify your Python application code or recompile it, the vault.dat will become invalid and must be regenerated.**
 - The Token: The token is the sensitive, private part of your API request (e.g., your Discord Webhook ID/Secret, API Key, or Bearer Token).
 
 ## Python Integration
@@ -176,6 +181,13 @@ response = requests.post(url, json=data)
 High-level HTTP libraries (like Python's `requests`) automatically calculate the `Content-Length` header based on the exact size of your JSON payload before the data is sent.
 
 Because `vault_native.pyd` intercepts and modifies the traffic at the lowest network (socket) level, it swaps the placeholder with your real token after Python has already calculated this length. If your real token has a different length than the placeholder string (23 characters), the `Content-Length` header will be incorrect. The receiving API will detect this mismatch and immediately drop the connection or return a `400 Bad Request` error.
+
+## Compatibility
+
+Thanks to Python's Stable ABI (abi3), the native interceptor is highly compatible and does not require recompilation for different Python environments.
+
+- **Python Version:** Supports **Python 3.7 and all newer versions** (3.8, 3.9, 3.10, 3.11, 3.12, 3.13+).
+- **OS/Architecture:** Windows 64-bit (x86_64) only.
 
 ## Security & Trust Philosophy
 
