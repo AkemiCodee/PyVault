@@ -5,6 +5,20 @@ This tool mitigates the two most critical vulnerabilities of deploying compiled 
 
 By decoupling the secrets from the application logic and delegating the network layer to a hardened Rust binary, the token is never exposed to the Python runtime.
 
+## Table of Contents
+
+- [Getting Started: Implementing PyVault](#getting-started-implementing-pyvault)
+  - [Prerequisites](#prerequisites)
+  - [Workflow](#workflow)
+  - [Important Guidelines](#important-guidelines)
+- [Python Integration](#python-integration)
+  - [Example: Discord-Webhook](#example-discord-webhook)
+  - [Example: Cloudflare Worker (Custom Auth Header)](#example-cloudflare-worker-custom-auth-header)
+- [Important Note: Placeholder Limitations](#important-note-placeholder-limitations)
+- [Compatibility](#compatibility)
+- [Security & Trust Philosophy](#security--trust-philosophy)
+- [Support & Contact](#support--contact)
+
 <img width="907" height="585" alt="Screenshot_1" src="https://github.com/user-attachments/assets/fe4a28cb-b466-4f13-b713-48a23d1431d8" />
 
 **How it works:** 
