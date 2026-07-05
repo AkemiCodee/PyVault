@@ -1,6 +1,0 @@
-# PyVault ignore list
-*.dat
-*.log
-__pycache__/
-.env
-*.exe
