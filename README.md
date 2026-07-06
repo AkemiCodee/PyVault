@@ -1,3 +1,5 @@
+![License](https://img.shields.io/badge/License-Proprietary-red)
+
 ## PyVault
 This tool mitigates the two most critical vulnerabilities of deploying compiled Python applications (e.g., via PyInstaller or Nuitka): 
 - **Source code extraction** 
