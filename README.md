@@ -1,5 +1,4 @@
-![License](https://img.shields.io/badge/License-Proprietary-red) ![OS](https://img.shields.io/badge/OS-Windows%2064--bit-blue) ![Python](https://img.shields.io/badge/Python-3.7%20--%203.13%2B-blue) ![Status](https://img.shields.io/badge/Status-Active-brightgreen) ![Downloads](https://img.shields.io/github/downloads/AkemiCodee/PyVault/total?color=purple)
-
+![License](https://img.shields.io/badge/License-Proprietary-red) ![OS](https://img.shields.io/badge/OS-Windows%2064--bit-blue) ![Python](https://img.shields.io/badge/Python-3.7%20--%203.13%2B-blue) ![Status](https://img.shields.io/badge/Status-Active-brightgreen) ![Built with Rust](https://img.shields.io/badge/Built%20with-Rust-orange?logo=rust)
 
 ## PyVault
 This tool mitigates the two most critical vulnerabilities of deploying compiled Python applications (e.g., via PyInstaller or Nuitka): 
@@ -7,6 +6,10 @@ This tool mitigates the two most critical vulnerabilities of deploying compiled 
 - **Memory dumping (RAM analysis)**
 
 By decoupling the secrets from the application logic and delegating the network layer to a hardened Rust binary, the token is never exposed to the Python runtime.
+
+#### Get the latest ready-to-use version of the application here.
+[![Download for Windows 64-bit](https://img.shields.io/badge/Download-Windows%2064--bit-success?style=for-the-badge&logo=windows)](https://github.com/AkemiCodee/PyVault/releases/latest)
+
 
 ## Table of Contents
 
