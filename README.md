@@ -1,4 +1,4 @@
-![License](https://img.shields.io/badge/License-Proprietary-red) ![OS](https://img.shields.io/badge/OS-Windows%2064--bit-blue) ![Python](https://img.shields.io/badge/Python-3.7%20--%203.13%2B-blue) ![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+![License](https://img.shields.io/badge/License-Proprietary-red) ![OS](https://img.shields.io/badge/OS-Windows%2064--bit-blue) ![Python](https://img.shields.io/badge/Python-3.7%20--%203.13%2B-blue) ![Status](https://img.shields.io/badge/Status-Active-brightgreen) ![Downloads](https://img.shields.io/github/downloads/AkemiCodee/PyVault/total?color=purple)
 
 
 ## PyVault
