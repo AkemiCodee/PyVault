@@ -1,4 +1,5 @@
-![License](https://img.shields.io/badge/License-Proprietary-red)
+![License](https://img.shields.io/badge/License-Proprietary-red) ![OS](https://img.shields.io/badge/OS-Windows%2064--bit-blue) ![Python](https://img.shields.io/badge/Python-3.7%20--%203.13%2B-blue) ![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+
 
 ## PyVault
 This tool mitigates the two most critical vulnerabilities of deploying compiled Python applications (e.g., via PyInstaller or Nuitka): 
