@@ -106,7 +106,7 @@ except Exception as e:
     sys.exit(1)
 
 # Usage
-data = {"message": "Authenticated via PyVault."}
+data = {"content": "Authenticated via PyVault."}
 
 # Use the placeholder instead of the real token
 webhook_url = "https://discord.com/api/webhooks/VAULT_TOKEN_PLACEHOLDER"
