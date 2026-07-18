@@ -218,10 +218,10 @@ PyVault is closed-source to protect the integrity of its obfuscation and protect
 - Dependency Transparency: PyVault relies on vetted, industry-standard Rust libraries (e.g., `ring` for encryption, `zeroize` for memory safety) to ensure cryptographic robustness.
 
 #### Virustotal:
-builder.exe (8097d77204975898de2671629d98eb8a71b4395ffe90b755195b3dc3ee85fee7):
-https://www.virustotal.com/gui/file/8097d77204975898de2671629d98eb8a71b4395ffe90b755195b3dc3ee85fee7/detection
-native_vault.pyd (79b3253eb1d2f41624240cdc58c654125ee70f659a9a9f20498fa9221d19d9ca):
-https://www.virustotal.com/gui/file/79b3253eb1d2f41624240cdc58c654125ee70f659a9a9f20498fa9221d19d9ca?nocache=1
+PyVault.exe (ede5bef38e7667d16f15afbe6ee8da922ca60763b03515075e3360296714aa5a):
+https://www.virustotal.com/gui/file/ede5bef38e7667d16f15afbe6ee8da922ca60763b03515075e3360296714aa5a?nocache=1
+vault_native.pyd (6d285d49842856f39c23d18aa5d917b86298bb582876c737fcc9ff77efe6deaa):
+https://www.virustotal.com/gui/file/6d285d49842856f39c23d18aa5d917b86298bb582876c737fcc9ff77efe6deaa?nocache=1
 
 # Support & Contact
 Questions, feedback, or found a bug? Feel free to reach out:
