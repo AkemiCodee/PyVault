@@ -60,17 +60,7 @@ Before you begin, ensure you have the following files:
 - `Your Compiled App`: Your Python script must be compiled into an .exe (using Nuitka or PyInstaller). **PyVault does not support standard .py script files.**
 
 ### Workflow
-1. Navigate to the directory containing your compiled application in your Command Prompt (CMD) or PowerShell.
-2. Execute the builder.exe utility to generate the cryptographically bound vault.dat file.
-
-CMD
-```bash
-  builder.exe --exe "C:\Path\To\Your\Application.exe" --token "YOUR_SECRET_TOKEN"
-```
-PowerShell
-```powershell
-.\builder.exe --exe "C:\Path\To\Your\Application.exe" --token "YOUR_SECRET_TOKEN"
-```
+...
 
 ### Important Guidelines
 - Full Paths: The `<PATH>` argument must be the **absolute path** to your file (e.g., C:\Users\Name\Desktop\MyApp.exe).
@@ -220,6 +210,7 @@ PyVault is closed-source to protect the integrity of its obfuscation and protect
 #### Virustotal:
 PyVault.exe (ede5bef38e7667d16f15afbe6ee8da922ca60763b03515075e3360296714aa5a):
 https://www.virustotal.com/gui/file/ede5bef38e7667d16f15afbe6ee8da922ca60763b03515075e3360296714aa5a?nocache=1
+
 vault_native.pyd (6d285d49842856f39c23d18aa5d917b86298bb582876c737fcc9ff77efe6deaa):
 https://www.virustotal.com/gui/file/6d285d49842856f39c23d18aa5d917b86298bb582876c737fcc9ff77efe6deaa?nocache=1
 
