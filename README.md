@@ -63,8 +63,11 @@ Before you begin, ensure you have the following files:
 <img width="502" height="372" alt="gui" src="https://github.com/user-attachments/assets/e99705e6-bccc-40e0-ba2d-dce51eb99169" />
 
 **1.** Open `PyVault.exe`.
+
 **2.** Click on `Browse Executable` and select your `.exe` file.
+
 **3.** Type your **secret token** or **API key** into the designated text field.
+
 **4.** Click `Create File`. The `vault.dat` file will be generated and saved in the same directory as your executable.
 
 To ensure the security layer functions correctly, the following three files must reside in the **same directory**:
