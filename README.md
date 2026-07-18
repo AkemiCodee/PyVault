@@ -28,7 +28,7 @@ By decoupling the secrets from the application logic and delegating the network 
 <img width="907" height="585" alt="Screenshot_1" src="https://github.com/user-attachments/assets/fe4a28cb-b466-4f13-b713-48a23d1431d8" />
 
 **How it works:** 
-The Provisioning Workflow completely decouples your sensitive API tokens from the application's source code. Instead of hardcoding secrets, the `builder.exe` utility analyzes your compiled Python application and generates a unique cryptographic fingerprint. This footprint is used to derive a secure, hardware-agnostic key that encrypts your token into an external `vault.dat` file. Because the vault is cryptographically bound to the exact hash of your executable, any tampering with the application immediately invalidates the decryption process.
+The Provisioning Workflow completely decouples your sensitive API tokens from the application's source code. Instead of hardcoding secrets, the `PyVault.exe` utility analyzes your compiled Python application and generates a unique cryptographic fingerprint. This footprint is used to derive a secure, hardware-agnostic key that encrypts your token into an external `vault.dat` file. Because the vault is cryptographically bound to the exact hash of your executable, any tampering with the application immediately invalidates the decryption process.
 
 <img width="547" height="556" alt="Screenshot_2" src="https://github.com/user-attachments/assets/2e7e6c8c-f466-408f-a94c-2cb08c6cf923" />
 
@@ -55,15 +55,14 @@ After the native module successfully validates the environment and dynamically i
 
 ### Prerequisites
 Before you begin, ensure you have the following files:
-- `builder.exe`: The configuration utility.
+- `PyVault.exe`: The configuration utility.
 - `vault_native.pyd`: The native Rust-based interceptor module.
-- `Your Compiled App`: Your Python script must be compiled into an .exe (using Nuitka or PyInstaller). **PyVault does not support standard .py script files.**
+- `Your Compiled App`: Your Python script must be compiled into an **.exe** (using Nuitka or PyInstaller). **PyVault does not support standard .py script files.**
 
 ### Workflow
 ...
 
 ### Important Guidelines
-- Full Paths: The `<PATH>` argument must be the **absolute path** to your file (e.g., C:\Users\Name\Desktop\MyApp.exe).
 - Immutable Binary: Once `vault.dat` is generated, it is strictly bound to the SHA-256 hash of your .exe. **If you modify your Python application code or recompile it, the vault.dat will become invalid and must be regenerated.**
 - The Token: The token is the sensitive, private part of your API request (e.g., your Discord Webhook ID/Secret, API Key, or Bearer Token).
 
