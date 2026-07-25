@@ -35,7 +35,7 @@ The Provisioning Workflow completely decouples your sensitive API tokens from th
 **How it works:** 
 At runtime, your Python application never touches or processes the real API token, eliminating the risk of accidental exposure in logs or memory dumps. The app simply dispatches standard HTTPS requests containing a dummy placeholder. Meanwhile, the `vault_native.pyd` module installs a hook on Python's SSL socket layer (`ssl.SSLSocket`). It silently monitors outbound traffic and intercepts the placeholder request seamlessly in the background, ensuring the Python runtime remains entirely isolated from the sensitive data.
 
-> **Scope note:** the hook operates on the standard-library `ssl` module. It covers HTTPS traffic from `requests`, `urllib3` and `httpx`, but not plain HTTP or TLS stacks that bypass `ssl.SSLSocket` (e.g. PyOpenSSL or memory-BIO async implementations such as aiohttp/asyncio).
+> **Note:** the hook operates on the standard-library `ssl` module. It covers HTTPS traffic from `requests`, `urllib3` and `httpx`, but not plain HTTP or TLS stacks that bypass `ssl.SSLSocket` (e.g. PyOpenSSL or memory-BIO async implementations such as aiohttp/asyncio).
 
 <img width="1014" height="248" alt="Screenshot_3" src="https://github.com/user-attachments/assets/3a60717a-6d16-4607-ac74-8eb03fcc8fb9" />
 
@@ -217,6 +217,7 @@ PyVault is closed-source to protect the integrity of its obfuscation and protect
 #### Virustotal:
 PyVault.exe (e0daa9e46971399766a07245fd75c258aa823a4efa2fe85e4bcd1b6e4c656b7e):
 https://www.virustotal.com/gui/file/e0daa9e46971399766a07245fd75c258aa823a4efa2fe85e4bcd1b6e4c656b7e?nocache=1
+
 vault_native.pyd (905f0ce46c543a89c8363dce1cb5b6d33c6bad0667148ebcf369233e57c8ca4c):
 https://www.virustotal.com/gui/file/905f0ce46c543a89c8363dce1cb5b6d33c6bad0667148ebcf369233e57c8ca4c?nocache=1
 
