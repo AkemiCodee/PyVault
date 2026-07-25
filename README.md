@@ -71,7 +71,6 @@ Before you begin, ensure you have the following files:
 4. The builder writes a cryptographically bound `vault.dat` next to your executable — ship it alongside your app.
 
 ### Important Guidelines
-- Full Paths: The `<PATH>` argument must be the **absolute path** to your file (e.g., C:\Users\Name\Desktop\MyApp.exe).
 - Immutable Binary: Once `vault.dat` is generated, it is strictly bound to the SHA-256 hash of your .exe. **If you modify your Python application code or recompile it, the vault.dat will become invalid and must be regenerated.**
 - The Token: The token is the sensitive, private part of your API request (e.g., your Discord Webhook ID/Secret, API Key, or Bearer Token).
 
