@@ -69,7 +69,7 @@ Before you begin, ensure you have the following files:
 1. Import `vault_native.pyd` (`import vault_native`) and initialize the interceptor (`vault_native.init_interceptor()`).
 2. Use `VAULT_TOKEN_PLACEHOLDER` in your request instead of your actual `token`.
 3. Compile your Python file into an `.exe` (using Nuitka or PyInstaller), preferably using the `--onefile` option.
-
+**Binding the Token:**
 1. Launch `PyVault.exe`.
 2. Click **Browse Executable** and select your compiled application.
 3. Paste your secret token into the **Token / Key** field and click **Create File**.
