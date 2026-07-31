@@ -234,11 +234,11 @@ PyVault is closed-source to protect the integrity of its obfuscation and protect
 - Dependency Transparency: PyVault relies on vetted, industry-standard Rust libraries (AES-256-GCM and Argon2id from the RustCrypto project, `zeroize` for memory safety) to ensure cryptographic robustness.
 
 #### Virustotal:
-PyVault.exe (e0daa9e46971399766a07245fd75c258aa823a4efa2fe85e4bcd1b6e4c656b7e):
-https://www.virustotal.com/gui/file/e0daa9e46971399766a07245fd75c258aa823a4efa2fe85e4bcd1b6e4c656b7e?nocache=1
+PyVault.exe (2a8ecdf79cff6be43a5b7d87633cb07b495be87ec034590a02ee29be98fc54f3):
+https://www.virustotal.com/gui/file/2a8ecdf79cff6be43a5b7d87633cb07b495be87ec034590a02ee29be98fc54f3?nocache=1
 
-vault_native.pyd (905f0ce46c543a89c8363dce1cb5b6d33c6bad0667148ebcf369233e57c8ca4c):
-https://www.virustotal.com/gui/file/905f0ce46c543a89c8363dce1cb5b6d33c6bad0667148ebcf369233e57c8ca4c?nocache=1
+vault_native.pyd (d916fe24709b15226b272b4d429082b52494529147d7e1c6cd94a5fbcd95faba):
+https://www.virustotal.com/gui/file/d916fe24709b15226b272b4d429082b52494529147d7e1c6cd94a5fbcd95faba?nocache=1
 
 # 📞 Support & Contact
 Questions, feedback, or found a bug? Feel free to reach out:
