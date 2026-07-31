@@ -191,22 +191,22 @@ else:
 
 PyVault is not limited to Discord Webhooks / Cloudflare Worker. You can use the `VAULT_TOKEN_PLACEHOLDER` in any HTTP request, header, or API path. Wherever your application requires a hardcoded secret, simply use the placeholder, and the native interceptor will securely handle the injection and memory sanitization for you.
 
-## Important Note: Placeholder Limitations
+## ⚠️ Important Note: Placeholder Limitations
 While PyVault is highly flexible, there is one technical limitation you must keep in mind regarding where you can safely place the `VAULT_TOKEN_PLACEHOLDER`.
 
-Safe to use in:
+Safe Usage Locations:
 
-- URLs (e.g., https://api.Example.com/VAULT_TOKEN_PLACEHOLDER)
-- HTTP Headers (e.g., "Example": "Bearer VAULT_TOKEN_PLACEHOLDER")
+- ✅ URLs (e.g., https://api.example.com/VAULT_TOKEN_PLACEHOLDER)
+- ✅ HTTP Headers (e.g., "Authorization": "Bearer VAULT_TOKEN_PLACEHOLDER")
 
 Changing URLs or Headers at the socket level is perfectly safe and will not disrupt the HTTP protocol.
 
-Do NOT use inside the HTTP Body (e.g., JSON payloads):
+Unsafe Usage Locations:
 
-- If you attempt to inject the placeholder directly into the data payload, it will likely cause the target server to reject your request.
+- ❌ HTTP JSON/Request Bodies
 
 ```python
-# Do NOT put the placeholder inside the body!!
+# 🛑 DO NOT PLACE THE PLACEHOLDER INSIDE THE REQUEST BODY!
 data = {
     "auth_secret": "VAULT_TOKEN_PLACEHOLDER" 
 }
@@ -218,14 +218,14 @@ High-level HTTP libraries (like Python's `requests`) automatically calculate the
 
 Because `vault_native.pyd` intercepts and modifies the traffic at the lowest network (socket) level, it swaps the placeholder with your real token after Python has already calculated this length. If your real token has a different length than the placeholder string (23 characters), the `Content-Length` header will be incorrect. The receiving API will detect this mismatch and immediately drop the connection or return a `400 Bad Request` error.
 
-## Compatibility
+## 💻 Compatibility
 
 Thanks to Python's Stable ABI (abi3), the native interceptor is highly compatible and does not require recompilation for different Python environments.
 
 - **Python Version:** Supports **Python 3.7 and all newer versions** (3.8, 3.9, 3.10, 3.11, 3.12, 3.13+).
 - **OS/Architecture:** Windows 64-bit (x86_64) only.
 
-## Security & Trust Philosophy
+## 🔒 Security & Trust Philosophy
 
 PyVault is closed-source to protect the integrity of its obfuscation and protection mechanisms. However, we value transparency and user safety.
 
@@ -240,7 +240,7 @@ https://www.virustotal.com/gui/file/e0daa9e46971399766a07245fd75c258aa823a4efa2f
 vault_native.pyd (905f0ce46c543a89c8363dce1cb5b6d33c6bad0667148ebcf369233e57c8ca4c):
 https://www.virustotal.com/gui/file/905f0ce46c543a89c8363dce1cb5b6d33c6bad0667148ebcf369233e57c8ca4c?nocache=1
 
-# Support & Contact
+# 📞 Support & Contact
 Questions, feedback, or found a bug? Feel free to reach out:
 - GitHub: @AkemiCodee (Preferred for Issues & Bugs)
 - Discord: @akeemi666_ (For quick questions)
