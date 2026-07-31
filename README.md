@@ -235,9 +235,11 @@ PyVault is closed-source to protect the integrity of its obfuscation and protect
 
 #### Virustotal:
 PyVault.exe (2a8ecdf79cff6be43a5b7d87633cb07b495be87ec034590a02ee29be98fc54f3):
+
 https://www.virustotal.com/gui/file/2a8ecdf79cff6be43a5b7d87633cb07b495be87ec034590a02ee29be98fc54f3?nocache=1
 
 vault_native.pyd (d916fe24709b15226b272b4d429082b52494529147d7e1c6cd94a5fbcd95faba):
+
 https://www.virustotal.com/gui/file/d916fe24709b15226b272b4d429082b52494529147d7e1c6cd94a5fbcd95faba?nocache=1
 
 # 📞 Support & Contact
